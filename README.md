@@ -1,5 +1,19 @@
 # Backend
 
+To create a new feature
+
+```
+git flow feature start #-card-on-trello
+```
+to push your changes into github repository gitout ending your feature
+```
+git push origin feature/#-card-on-trello
+```
+to end your feature
+```
+git flow feature finish #-card-on-trello
+```
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
