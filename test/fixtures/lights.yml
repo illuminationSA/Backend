@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  consumption: 1.5
+  place: one
+
+two:
+  name: MyString
+  consumption: 1.5
+  place: two
