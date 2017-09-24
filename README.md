@@ -1,14 +1,16 @@
-# Backend
+# SA Iluminacion Back
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the Iluminacion Project API for software Architecture 2017 II course.
 
-Things you may want to cover:
+## Getting Started
+```
+git clone https://github.com/afforeroc/SA_Iluminacion_Back.git
+```
 
-* Ruby version
-ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
+### Prerequisites
 
-* System dependencies
+You need to install these software: <br />
+```
 virtualbox-5.1_5.1.26
 docker-ce_17.06.1
 docker-machine version 0.12.2
@@ -20,20 +22,17 @@ python-software-properties libffi-dev nodejs
 ruby 2.4.0
 Rails 5.0.6
 libmysqlclient-dev ruby-mysql2
+```
 
-* Configuration
+### Configuration
+```
 $ sh z1_bundle.sh
 $ sh z2_machine.sh
+```
 
-* Database creation
+### Database creation
 
-* Database initialization
+### Database initialization
+```
 $ sh z3_compose.sh
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```

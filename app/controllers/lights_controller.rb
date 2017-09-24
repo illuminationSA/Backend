@@ -16,15 +16,14 @@ class LightsController < ApplicationController
   # POST /lights
   def create
     @place = Place.find(params[:place_id])
-    @light = @place.lights.create(light_params)
-    redirect_to lights_path(@light)
     #@light = Light.new(light_params)
+    @light = @place.lights.create(light_params)
 
-    #if @light.save
-    #  render json: @light, status: :created, location: @light
-    #else
-    #  render json: @light.errors, status: :unprocessable_entity
-    #end
+    if @light.save
+      render json: @light, status: :created, location: @light
+    else
+      render json: @light.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /lights/1
@@ -49,6 +48,6 @@ class LightsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def light_params
-      params.require(:light).permit(:name, :consumption, :place_id)
+      params.require(:light).permit(:name, :consumption)
     end
 end
