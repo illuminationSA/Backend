@@ -1,10 +1,20 @@
-# SA Iluminacion Back
-
-This is the Iluminacion Project API for software Architecture 2017 II course.
+# Backend
 
 ## Getting Started
 ```
-git clone https://github.com/afforeroc/SA_Iluminacion_Back.git
+it flow init
+git config --global user.email "aapiragautau@unal.edu.co"
+git config --global user.name "Anni Piragauta"
+git flow feature start #-card-on-trello
+gst -sb
+ga .
+gc -m "OMETHING YOU WANT TO COMMIT"
+git flow feature publish #-card-on-trello
+git flow feature finish #-card-on-trello
+git push origin develop
+
+git flow release start 1.0.0
+git flow release finish 1.0.0
 ```
 
 ### Prerequisites
