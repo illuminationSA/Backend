@@ -17,7 +17,12 @@ class PlacesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @place = @user.places.create(place_params)
-    redirect_to place_path(@place)
+    
+    if @place.save
+      render json: @place, status: :created, location: @place
+    else
+      render json: @place.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /places/1

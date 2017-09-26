@@ -1,28 +1,26 @@
 # Backend
 
-To create a new feature
-
+## Getting Started
 ```
+it flow init
+git config --global user.email "aapiragautau@unal.edu.co"
+git config --global user.name "Anni Piragauta"
 git flow feature start #-card-on-trello
-```
-to push your changes into github repository gitout ending your feature
-```
-git push origin feature/#-card-on-trello
-```
-to end your feature
-```
+gst -sb
+ga .
+gc -m "OMETHING YOU WANT TO COMMIT"
+git flow feature publish #-card-on-trello
 git flow feature finish #-card-on-trello
+git push origin develop
+
+git flow release start 1.0.0
+git flow release finish 1.0.0
 ```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Prerequisites
 
-Things you may want to cover:
-
-* Ruby version
-ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
-
-* System dependencies
+You need to install these software: <br />
+```
 virtualbox-5.1_5.1.26
 docker-ce_17.06.1
 docker-machine version 0.12.2
@@ -34,20 +32,17 @@ python-software-properties libffi-dev nodejs
 ruby 2.4.0
 Rails 5.0.6
 libmysqlclient-dev ruby-mysql2
+```
 
-* Configuration
+### Configuration
+```
 $ sh z1_bundle.sh
 $ sh z2_machine.sh
+```
 
-* Database creation
+### Database creation
 
-* Database initialization
+### Database initialization
+```
 $ sh z3_compose.sh
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :schedule_times
+  resources :light_logs
   resources :lights
   resources :users
   resources :places
