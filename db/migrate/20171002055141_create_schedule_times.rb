@@ -1,4 +1,4 @@
-class CreateScheduleTimes < ActiveRecord::Migration[5.0]
+class CreateScheduleTimes < ActiveRecord::Migration[5.1]
   def change
     create_table :schedule_times do |t|
       t.boolean :set_to

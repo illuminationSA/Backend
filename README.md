@@ -2,13 +2,13 @@
 
 ## Getting Started
 ```
-it flow init
+git flow init
 git config --global user.email "aapiragautau@unal.edu.co"
 git config --global user.name "Anni Piragauta"
 git flow feature start #-card-on-trello
 gst -sb
 ga .
-gc -m "OMETHING YOU WANT TO COMMIT"
+gc -m "SOMETHING YOU WANT TO COMMIT"
 git flow feature publish #-card-on-trello
 git flow feature finish #-card-on-trello
 git push origin develop
@@ -32,17 +32,20 @@ python-software-properties libffi-dev nodejs
 ruby 2.4.0
 Rails 5.0.6
 libmysqlclient-dev ruby-mysql2
+httpie
 ```
 
 ### Configuration
 ```
-$ sh z1_bundle.sh
-$ sh z2_machine.sh
+$ sh z1_config.sh
 ```
 
 ### Database creation
+```
+$ sh z2_start.sh
+```
 
 ### Database initialization
 ```
-$ sh z3_compose.sh
+$ sh z3_post.sh
 ```
