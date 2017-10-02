@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: arqui
       MYSQL_USER: user
       MYSQL_PASSWORD: arquisoft
-      MYSQL_DATABASE: SA_Iluminacion_Back_development
+      MYSQL_DATABASE: Backend_development
       MYSQL_HOST: db
   web:
     build: .

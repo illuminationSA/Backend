@@ -1,4 +1,4 @@
-class CreateLights < ActiveRecord::Migration[5.0]
+class CreateLights < ActiveRecord::Migration[5.1]
   def change
     create_table :lights do |t|
       t.string :name

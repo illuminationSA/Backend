@@ -1,10 +1,10 @@
 FROM ruby:2.4
 
-RUN mkdir /SAI_back
-WORKDIR /SAI_back
+RUN mkdir /Backend
+WORKDIR /Backend
 
-ADD Gemfile /SAI_back/Gemfile
-ADD Gemfile.lock /SAI_back/Gemfile.lock
+ADD Gemfile /Backend/Gemfile
+ADD Gemfile.lock /Backend/Gemfile.lock
 
 RUN bundle install
-ADD . /SAI_back
+ADD . /Backend

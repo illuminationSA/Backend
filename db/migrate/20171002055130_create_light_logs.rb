@@ -1,4 +1,4 @@
-class CreateLightLogs < ActiveRecord::Migration[5.0]
+class CreateLightLogs < ActiveRecord::Migration[5.1]
   def change
     create_table :light_logs do |t|
       t.boolean :event
