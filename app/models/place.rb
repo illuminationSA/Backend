@@ -13,4 +13,5 @@ class Place < ApplicationRecord
   def self.by_user(user_id)
     load.where( {user_id: user_id} )
   end
+
 end

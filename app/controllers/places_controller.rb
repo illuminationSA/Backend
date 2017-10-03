@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :set_place, only: [:show, :update, :destroy]
+  before_action :set_place, only: [:show, :update, :destroy, :show_lights]
 
   # GET /places
   def index
@@ -39,10 +39,13 @@ class PlacesController < ApplicationController
     @place.destroy
   end
 
-  def get_places_by_user_id
-    @user = user.find( params[:user_id] )
-
-    render json: @user.places
+  # GET /places/1/lights
+  def show_lights
+    if @place.lights
+      render json: @place.lights
+    else
+      render json: "Error en /places/place_id/lights"
+    end
   end
 
   private
