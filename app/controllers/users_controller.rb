@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy, :show_lights, :show_places]
 
   # GET /users
   def index
@@ -36,6 +36,26 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
+  end
+
+  # GET /users/1/lights
+  def show_lights
+    @lights = @user.lights
+    if @lights
+      render json: @lights
+    else
+      render json: "Error en users/user_id/lights"
+    end
+  end
+
+  # GET /users/1/places
+  def show_places
+    @places = @user.places
+    if @places
+      render json: @places
+    else
+      render json: "Error en users/user_id/places"
+    end
   end
 
   private

@@ -9,11 +9,21 @@ class User < ApplicationRecord
     self.update_columns(token: nil)
   end
 
-  def self.valid_login?(email, password) 
+  def self.valid_login?(email, password)
     user = find_by(email: email)
     if user && user.authenticate(password)
       user
     end
   end
-  
+
+  def lights
+    @lights = Array.new
+    self.places.each do |pl|
+      pl.lights.each do |li|
+        @lights.push( li.id )
+      end
+    end
+    Light.by_ids( @lights )
+  end
+
 end
