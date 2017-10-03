@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   get 'users/:id/lights', to: 'users#show_lights', as: :users_show_lights
   get 'users/:id/places', to: 'users#show_places', as: :users_show_places
+  get 'places/:id/lights', to: 'places#show_lights', as: :places_show_lights
 
 end
