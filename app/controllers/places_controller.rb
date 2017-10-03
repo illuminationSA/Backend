@@ -17,7 +17,7 @@ class PlacesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @place = @user.places.create(place_params)
-    
+
     if @place.save
       render json: @place, status: :created, location: @place
     else
@@ -37,6 +37,12 @@ class PlacesController < ApplicationController
   # DELETE /places/1
   def destroy
     @place.destroy
+  end
+
+  def get_places_by_user_id
+    @user = user.find( params[:user_id] )
+
+    render json: @user.places
   end
 
   private

@@ -15,7 +15,8 @@ default: &default
   pool: 5
   username: root
   password: arqui
-  host: db
+  host: localhost
+  #host: db
 
 development:
   <<: *default

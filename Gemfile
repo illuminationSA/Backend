@@ -42,3 +42,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'therubyracer', :platforms => :ruby
 gem 'execjs'
 gem 'bcrypt'
+
+gem 'hirb'

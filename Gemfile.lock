@@ -49,6 +49,7 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    hirb (0.7.3)
     i18n (0.8.6)
     libv8 (3.16.14.19)
     listen (3.1.5)
@@ -133,6 +134,7 @@ DEPENDENCIES
   bcrypt
   byebug
   execjs
+  hirb
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.5)
   puma (~> 3.7)
