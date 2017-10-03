@@ -22,7 +22,4 @@ class Light < ApplicationRecord
   def self.by_user( user_id )
     @user = load.place.user_id
   end
-
-
-
 end

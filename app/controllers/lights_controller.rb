@@ -1,5 +1,5 @@
 class LightsController < ApplicationController
-  before_action :set_light, only: [:show, :update, :destroy]
+  before_action :set_light, only: [:show, :update, :destroy, :show_light_logs, :show_schedule_times]
 
   # GET /lights
   def index
@@ -39,6 +39,25 @@ class LightsController < ApplicationController
   def destroy
     @light.destroy
   end
+
+  # GET /lights/1/light_logs
+  def show_light_logs
+    if @light.light_logs
+      render json: @light.light_logs
+    else
+      render json: "Error en /lights/light_id/light_logs"
+    end
+  end
+
+  # GET /lights/1/schedule_times
+  def show_schedule_times
+    if @light.schedule_times
+      render json: @light.schedule_times
+    else
+      render json: "Error en /lights/light_id/schedule_times"
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
