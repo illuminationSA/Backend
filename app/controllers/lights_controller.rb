@@ -16,7 +16,6 @@ class LightsController < ApplicationController
   # POST /lights
   def create
     @place = Place.find(params[:place_id])
-    #@light = Light.new(light_params)
     @light = @place.lights.create(light_params)
 
     if @light.save
@@ -57,7 +56,6 @@ class LightsController < ApplicationController
       render json: "Error en /lights/light_id/schedule_times"
     end
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

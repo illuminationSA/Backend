@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20171002055141) do
 
   create_table "light_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.boolean "event"
+    t.boolean "event", default: false
     t.bigint "light_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20171002055141) do
 
   create_table "lights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.float "consumption", limit: 24
+    t.float "consumption", limit: 24, default: 0.0
     t.bigint "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

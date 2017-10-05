@@ -39,6 +39,11 @@ class LightLogsController < ApplicationController
     @light_log.destroy
   end
 
+  #TODO jdfasflkdfhdsakjfjskdafnjkasdnfjksadnfjsdnfjksdnfjksdnfkjsdnfjksdnfjknsdjkf
+  def update_light_consumption
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_light_log
