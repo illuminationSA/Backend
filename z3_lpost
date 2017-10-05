@@ -34,8 +34,14 @@ http POST localhost:3000/light_logs event="on" light_id=1
 http POST localhost:3000/light_logs event="off" light_id=1
 http POST localhost:3000/light_logs event="on" light_id=1
 http POST localhost:3000/light_logs event="off" light_id=1
+http POST localhost:3000/light_logs event="on" light_id=1
+http POST localhost:3000/light_logs event="off" light_id=1
+http POST localhost:3000/light_logs event="on" light_id=1
+http POST localhost:3000/light_logs event="off" light_id=1
 
 
+http POST localhost:3000/light_logs event="off" light_id=2
+http POST localhost:3000/light_logs event="on" light_id=2
 http POST localhost:3000/light_logs event="off" light_id=2
 http POST localhost:3000/light_logs event="on" light_id=2
 http POST localhost:3000/light_logs event="off" light_id=2
@@ -115,4 +121,4 @@ http POST localhost:3000/light_logs event="off" light_id=30
 http POST localhost:3000/light_logs event="off" light_id=31
 
 #Call db/seed.rb to update light_logs registers to created_at dates that gives us some ligth consumption
-rake db:seed
+#rake db:seed
