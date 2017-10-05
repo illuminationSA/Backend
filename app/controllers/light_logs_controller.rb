@@ -20,6 +20,7 @@ class LightLogsController < ApplicationController
 
     if @light_log.save
       render json: @light_log, status: :created, location: @light_log
+      @light_log.update_light_consumption
     else
       render json: @light_log.errors, status: :unprocessable_entity
     end
@@ -38,6 +39,8 @@ class LightLogsController < ApplicationController
   def destroy
     @light_log.destroy
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -16,7 +16,7 @@ class Light < ApplicationRecord
   end
 
   def self.by_place(place_id)
-    where( {place_id: place_id} )
+    load.where( {place_id: place_id} )
   end
 
   def self.by_user( user_id )
