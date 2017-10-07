@@ -2,19 +2,19 @@
 
 ## Getting Started
 ```
-git flow init
 git config --global user.email "aapiragautau@unal.edu.co"
 git config --global user.name "Anni Piragauta"
+
+git clone https://github.com/illuminationSA/Backend.git
+
+git flow init
 git flow feature start #-card-on-trello
 gst -sb
 ga .
 gc -m "SOMETHING YOU WANT TO COMMIT"
 git flow feature publish #-card-on-trello
 git flow feature finish #-card-on-trello
-git push origin develop
-
-git flow release start 1.0.0
-git flow release finish 1.0.0
+git push
 ```
 
 ### Prerequisites
@@ -37,15 +37,19 @@ httpie
 
 ### Configuration
 ```
-$ sh z1_config.sh
+Install all dependencies: $ bundle install
+Start machines:           $ sh dmachines
+Clear rancher-node1:      $ sh dclear
 ```
 
 ### Database creation
 ```
-$ sh z2_start.sh
+For localhost:3000:       $ sh start
+For 192.168.99.101:3000:  $ sh dstart
 ```
 
 ### Database initialization
 ```
-$ sh z3_post.sh
+For localhost:3000:       $ sh post
+For 192.168.99.101:3000:  $ sh dpost
 ```
