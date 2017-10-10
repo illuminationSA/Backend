@@ -15,61 +15,22 @@
 curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Carlos Domingo", "email":"cdomingo@gmail.com", "password":"Hello1234"}}' http://localhost:3000/users
 
 # Places
-http POST localhost:3000/places name="Dormitorio" user_id=1
-http POST localhost:3000/places name="Sala-Comedor" user_id=1
-http POST localhost:3000/places name="Cocina" user_id=1
+http POST localhost:3000/places name="Dormitorio"     user_id=1
+http POST localhost:3000/places name="Sala-Comedor"   user_id=1
+http POST localhost:3000/places name="Cocina"         user_id=1
 http POST localhost:3000/places name="Zona de lavado" user_id=1
-http POST localhost:3000/places name="Baño" user_id=1
+http POST localhost:3000/places name="Baño"           user_id=1
 
 # Lights
-http POST localhost:3000/lights name="DRMTR_1" consumption=0 place_id=1
-http POST localhost:3000/lights name="DRMTR_2" consumption=0 place_id=1
-http POST localhost:3000/lights name="SL_CMDR_1" consumption=0 place_id=2
-http POST localhost:3000/lights name="SL_CMDR_2" consumption=0 place_id=2
-http POST localhost:3000/lights name="SLC_MDR_3" consumption=0 place_id=2
-http POST localhost:3000/lights name="CCN_1" consumption=0 place_id=3
-http POST localhost:3000/lights name="CCN_2" consumption=0 place_id=3
+http POST localhost:3000/lights name="DRMTR_1"    consumption=0 place_id=1
+http POST localhost:3000/lights name="DRMTR_2"    consumption=0 place_id=1
+http POST localhost:3000/lights name="SL_CMDR_1"  consumption=0 place_id=2
+http POST localhost:3000/lights name="SL_CMDR_2"  consumption=0 place_id=2
+http POST localhost:3000/lights name="SLC_MDR_3"  consumption=0 place_id=2
+http POST localhost:3000/lights name="CCN_1"      consumption=0 place_id=3
+http POST localhost:3000/lights name="CCN_2"      consumption=0 place_id=3
 http POST localhost:3000/lights name="ZN_D_LVD_1" consumption=0 place_id=4
-http POST localhost:3000/lights name="BÑ_1" consumption=0 place_id=5
-
-# Schedule_times
-http POST localhost:3000/schedule_times set_to=true event_time='2017-10-05 03:14:00' light_id=1
-http POST localhost:3000/schedule_times set_to=false event_time='2017-10-05 04:14:00' light_id=1
-http POST localhost:3000/schedule_times set_to=true event_time='2017-10-05 06:30:00' light_id=1
-http POST localhost:3000/schedule_times set_to=false event_time='2017-10-05 10:05:00' light_id=1
-
-http POST localhost:3000/schedule_times set_to=true event_time='2017-10-05 05:14:00' light_id=2
-http POST localhost:3000/schedule_times set_to=false event_time='2017-10-05 09:14:00' light_id=2
-http POST localhost:3000/schedule_times set_to=true event_time='2017-10-05 12:30:00' light_id=2
-http POST localhost:3000/schedule_times set_to=false event_time='2017-10-05 23:05:00' light_id=2
-
-# Light_logs
-http POST localhost:3000/light_logs event="off" light_id=1
-http POST localhost:3000/light_logs event="on" light_id=1
-http POST localhost:3000/light_logs event="off" light_id=1
-http POST localhost:3000/light_logs event="on" light_id=1
-http POST localhost:3000/light_logs event="off" light_id=1
-http POST localhost:3000/light_logs event="on" light_id=1
-http POST localhost:3000/light_logs event="off" light_id=1
-http POST localhost:3000/light_logs event="on" light_id=1
-http POST localhost:3000/light_logs event="off" light_id=1
-http POST localhost:3000/light_logs event="on" light_id=1
-http POST localhost:3000/light_logs event="off" light_id=1
-
-http POST localhost:3000/light_logs event="off" light_id=2
-http POST localhost:3000/light_logs event="on" light_id=2
-http POST localhost:3000/light_logs event="off" light_id=2
-http POST localhost:3000/light_logs event="on" light_id=2
-http POST localhost:3000/light_logs event="off" light_id=2
-http POST localhost:3000/light_logs event="on" light_id=2
-
-http POST localhost:3000/light_logs event="off" light_id=3
-http POST localhost:3000/light_logs event="off" light_id=4
-http POST localhost:3000/light_logs event="off" light_id=5
-http POST localhost:3000/light_logs event="off" light_id=6
-http POST localhost:3000/light_logs event="off" light_id=7
-http POST localhost:3000/light_logs event="off" light_id=8
-http POST localhost:3000/light_logs event="off" light_id=9
+http POST localhost:3000/lights name="BÑ_1"       consumption=0 place_id=5
 
 # Ernesto Arango - Apartamento de dos habitaciones
 #curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Ernesto Arango", "email":"earango@gmail.com", "password":"123123"}}' http://localhost:3000/users
