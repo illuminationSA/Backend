@@ -22,12 +22,12 @@ $ git push
 
 You should have these software installed: <br />
 ```
-virtualbox-5.1_5.1.26
-docker-ce_17.06.1
-docker-machine version 0.12.2
-docker-compose version 1.8.0
-ruby 2.4.0
-Rails 5.0.6
+virtualbox v5.1
+docker-ce v17.06.1
+docker-machine v0.12.2
+docker-compose v1.8.0
+ruby v2.4.0
+Rails v5.0.6
 httpie
 ```
 
