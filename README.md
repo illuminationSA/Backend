@@ -22,30 +22,29 @@ $ git push
 
 You should have these software installed: <br />
 ```
-virtualbox-5.1_5.1.26
-docker-ce_17.06.1
-docker-machine version 0.12.2
-docker-compose version 1.8.0
-ruby 2.4.0
-Rails 5.0.6
-httpie
+virtualbox v5.1.26
+docker-ce v17.06.1
+docker-machine v0.12.2
+docker-compose v1.8.0
+ruby v2.4.0
+rails v5.0.6
+httpie v0.9.2
 ```
 
 ### Configuration
 ```
 Install all dependencies:       $ bundle install
-Start docker machines:          $ sh dmachines
-Clear rancher-node1:            $ sh dclear
+Clear rancher-node1:            $ sh zclear
 ```
 
 ### Database creation
 ```
-For http://localhost:3000       $ sh start
-For http://192.168.99.101:3000  $ sh dstart
+For http://localhost:3000       $ sh z1 -l
+For http://192.168.99.101:3000  $ sh z1 -d
 ```
 
 ### Database initialization
 ```
-For http://localhost:3000       $ sh post
-For http://192.168.99.101:3000  $ sh dpost
+For http://localhost:3000       $ sh z2 -l
+For http://192.168.99.101:3000  $ sh z2 -d
 ```

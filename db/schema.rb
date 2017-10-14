@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002055141) do
+ActiveRecord::Schema.define(version: 20171002055130) do
 
   create_table "light_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean "event", default: false
@@ -37,15 +37,6 @@ ActiveRecord::Schema.define(version: 20171002055141) do
     t.index ["user_id"], name: "index_places_on_user_id"
   end
 
-  create_table "schedule_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.boolean "set_to"
-    t.timestamp "event_time"
-    t.bigint "light_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["light_id"], name: "index_schedule_times_on_light_id"
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "token"
@@ -59,5 +50,4 @@ ActiveRecord::Schema.define(version: 20171002055141) do
   add_foreign_key "light_logs", "lights"
   add_foreign_key "lights", "places"
   add_foreign_key "places", "users"
-  add_foreign_key "schedule_times", "lights"
 end
