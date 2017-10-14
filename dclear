@@ -1,4 +1,0 @@
-#!/bin/bash
-eval $(docker-machine env rancher-node1)
-docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi
-docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi

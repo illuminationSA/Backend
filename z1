@@ -1,0 +1,28 @@
+#!/bin/bash
+
+db_file="$(pwd)/config/database.yml" # Database file path
+
+if [ $# -eq 0 ]; then # Check arguments existence
+    echo "No arguments supplied"; exit 1
+elif [ $1 = "-l" ]; then # Run on localhost
+  echo "Localhost option selected"; sleep 0.5
+  sed -i -e 's/db/localhost/g' $db_file
+  rails db:drop && rails db:create && rails db:migrate && rails s
+elif [ $1 = "-d" ]; then # Run on docker
+  echo "Docker option selected"; sleep 0.5
+  sed -i -e 's/localhost/db/g' $db_file
+  docker-machine start rancher-server # Start docker machines
+  docker-machine start rancher-node1
+  docker-machine ls
+  eval $(docker-machine env rancher-node1) # Remove unused docker containers
+  docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi
+  docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi
+  eval $(docker-machine env rancher-node1) # Select node1 and load blackend
+  docker-compose build
+  docker-compose run --rm web rails db:drop
+  docker-compose run --rm web rails db:create
+  docker-compose run --rm web rails db:migrate
+  docker-compose up
+else # Check different argument
+  echo "Argument not allowed"; exit 1
+fi

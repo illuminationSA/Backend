@@ -15,19 +15,18 @@ default: &default
   pool: 5
   username: root
   password: arqui
-  host: localhost
-  #host: db
+  host: db
 
 development:
   <<: *default
-  database: Backend_development
+  database: illuminationSA_Backend_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+# Do not set this host to the same as development or production.
 test:
   <<: *default
-  database: Backend_test
+  database: illuminationSA_Backend_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -41,7 +40,7 @@ test:
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
 #
-#   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"
+#   DATABASE_URL="mysql2://myuser:mypass@db/somedatabase"
 #
 # You can use this database configuration with:
 #
@@ -50,4 +49,4 @@ test:
 #
 production:
   <<: *default
-  database: Backend_production
+  database: illuminationSA_Backend_production

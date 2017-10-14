@@ -34,18 +34,17 @@ httpie
 ### Configuration
 ```
 Install all dependencies:       $ bundle install
-Start docker machines:          $ sh dmachines
-Clear rancher-node1:            $ sh dclear
+Clear rancher-node1:            $ sh zclear
 ```
 
 ### Database creation
 ```
-For http://localhost:3000       $ sh start
-For http://192.168.99.101:3000  $ sh dstart
+For http://localhost:3000       $ sh z1 -l
+For http://192.168.99.101:3000  $ sh z1 -d
 ```
 
 ### Database initialization
 ```
-For http://localhost:3000       $ sh post
-For http://192.168.99.101:3000  $ sh dpost
+For http://localhost:3000       $ sh z2 -l
+For http://192.168.99.101:3000  $ sh z2 -d
 ```

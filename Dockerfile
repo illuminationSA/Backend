@@ -1,10 +1,10 @@
 FROM ruby:2.4
 
-RUN mkdir /Backend
-WORKDIR /Backend
+RUN mkdir /illuminationSA_Backend
+WORKDIR /illuminationSA_Backend
 
-ADD Gemfile /Backend/Gemfile
-ADD Gemfile.lock /Backend/Gemfile.lock
+ADD Gemfile /illuminationSA_Backend/Gemfile
+ADD Gemfile.lock /illuminationSA_Backend/Gemfile.lock
 
 RUN bundle install
-ADD . /Backend
+ADD . /illuminationSA_Backend
