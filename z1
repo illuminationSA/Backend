@@ -3,7 +3,7 @@
 db_file="$(pwd)/config/database.yml" # Database file path
 
 if [ $# -eq 0 ]; then # Check arguments existence
-    echo "No arguments supplied"; exit 1
+  echo "No arguments supplied"; exit 1
 elif [ $1 = "-l" ]; then # Run on localhost
   echo "Localhost option selected"; sleep 0.5
   sed -i -e 's/db/localhost/g' $db_file
@@ -14,10 +14,7 @@ elif [ $1 = "-d" ]; then # Run on docker
   docker-machine start rancher-server # Start docker machines
   docker-machine start rancher-node1
   docker-machine ls
-  eval $(docker-machine env rancher-node1) # Remove unused docker containers
-  docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi
-  docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi
-  eval $(docker-machine env rancher-node1) # Select node1 and load blackend
+  eval $(docker-machine env rancher-node1) # Select node1 and start blackend
   docker-compose build
   docker-compose run --rm web rails db:drop
   docker-compose run --rm web rails db:create

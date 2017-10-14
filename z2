@@ -31,53 +31,53 @@ http POST $backend_path/places name="Sala-Comedor" user_id=1
 http POST $backend_path/places name="Cocina" user_id=1
 http POST $backend_path/places name="Zona de lavado" user_id=1
 http POST $backend_path/places name="Baño" user_id=1
-http POST $backend_path/lights name="DRMTR_1" consumption=10 place_id=1
-http POST $backend_path/lights name="DRMTR_2" consumption=10 place_id=1
-http POST $backend_path/lights name="SL_CMDR_1" consumption=10 place_id=2
-http POST $backend_path/lights name="SL_CMDR_2" consumption=10 place_id=2
-http POST $backend_path/lights name="SLC_MDR_3" consumption=10 place_id=2
-http POST $backend_path/lights name="CCN_1" consumption=10 place_id=3
-http POST $backend_path/lights name="CCN_2" consumption=10 place_id=3
-http POST $backend_path/lights name="ZN_D_LVD_1" consumption=10 place_id=4
-http POST $backend_path/lights name="BÑ_1" consumption=10 place_id=5
+http POST $backend_path/lights name="DRMTR_1" consumption=0 place_id=1
+http POST $backend_path/lights name="DRMTR_2" consumption=0 place_id=1
+http POST $backend_path/lights name="SL_CMDR_1" consumption=0 place_id=2
+http POST $backend_path/lights name="SL_CMDR_2" consumption=0 place_id=2
+http POST $backend_path/lights name="SLC_MDR_3" consumption=0 place_id=2
+http POST $backend_path/lights name="CCN_1" consumption=0 place_id=3
+http POST $backend_path/lights name="CCN_2" consumption=0 place_id=3
+http POST $backend_path/lights name="ZN_D_LVD_1" consumption=0 place_id=4
+http POST $backend_path/lights name="BÑ_1" consumption=0 place_id=5
 
 # Ernesto Arango - Apartment with two rooms
-curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Ernesto Arango", "email":"earango@gmail.com", "password":"123123"}}' http://$backend_path/users
-http POST $backend_path/places name="Habitación principal" user_id=2
-http POST $backend_path/places name="Habitación secundaria" user_id=2
-http POST $backend_path/places name="Sala-Comedor" user_id=2
-http POST $backend_path/places name="Cocina" user_id=2
-http POST $backend_path/places name="Zona de ropa" user_id=2
-http POST $backend_path/places name="Baño" user_id=2
-http POST $backend_path/lights name="HBTCN_PRNCPL_1" consumption=10 place_id=6
-http POST $backend_path/lights name="HBTCN_PRNCPL_2" consumption=10 place_id=6
-http POST $backend_path/lights name="HBTCN_SCNDR_1" consumption=10 place_id=7
-http POST $backend_path/lights name="SL_CMDR_1" consumption=10 place_id=8
-http POST $backend_path/lights name="SL_CMDR_2" consumption=10 place_id=8
-http POST $backend_path/lights name="SL_CMDR_3" consumption=10 place_id=8
-http POST $backend_path/lights name="CCN_1" consumption=10 place_id=9
-http POST $backend_path/lights name="CCN_2" consumption=10 place_id=9
-http POST $backend_path/lights name="ZN_D_RP_1" consumption=10 place_id=10
-http POST $backend_path/lights name="BÑ_1" consumption=10 place_id=11
+#curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Ernesto Arango", "email":"earango@gmail.com", "password":"123123"}}' http://$backend_path/users
+#http POST $backend_path/places name="Habitación principal" user_id=2
+#http POST $backend_path/places name="Habitación secundaria" user_id=2
+#http POST $backend_path/places name="Sala-Comedor" user_id=2
+#http POST $backend_path/places name="Cocina" user_id=2
+#http POST $backend_path/places name="Zona de ropa" user_id=2
+#http POST $backend_path/places name="Baño" user_id=2
+#http POST $backend_path/lights name="HBTCN_PRNCPL_1" consumption=0 place_id=6
+#http POST $backend_path/lights name="HBTCN_PRNCPL_2" consumption=0 place_id=6
+#http POST $backend_path/lights name="HBTCN_SCNDR_1" consumption=0 place_id=7
+#http POST $backend_path/lights name="SL_CMDR_1" consumption=0 place_id=8
+#http POST $backend_path/lights name="SL_CMDR_2" consumption=0 place_id=8
+#http POST $backend_path/lights name="SL_CMDR_3" consumption=0 place_id=8
+#http POST $backend_path/lights name="CCN_1" consumption=0 place_id=9
+#http POST $backend_path/lights name="CCN_2" consumption=0 place_id=9
+#http POST $backend_path/lights name="ZN_D_RP_1" consumption=0 place_id=10
+#http POST $backend_path/lights name="BÑ_1" consumption=0 place_id=11
 
 # Ximena Perez - House with three rooms
-curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Ximena Perez", "email":"xperez@gmail.com", "password":"password"}}' http://$backend_path/users
-http POST $backend_path/places name="Habitación principal" user_id=3
-http POST $backend_path/places name="Habitación secundaria" user_id=3
-http POST $backend_path/places name="Habitación huesped" user_id=3
-http POST $backend_path/places name="Sala-Comedor" user_id=3
-http POST $backend_path/places name="Cocina" user_id=3
-http POST $backend_path/places name="Zona de ropa" user_id=3
-http POST $backend_path/places name="Baño" user_id=3
-http POST $backend_path/lights name="HBTCN_PRNCPL_1" consumption=10 place_id=12
-http POST $backend_path/lights name="HBTCN_PRNCPL_2" consumption=10 place_id=12
-http POST $backend_path/lights name="HBTCN_SCNDR_1" consumption=10 place_id=13
-http POST $backend_path/lights name="HBTCN_SCNDR_2" consumption=10 place_id=13
-http POST $backend_path/lights name="HBTCN_HSPD_1" consumption=10 place_id=14
-http POST $backend_path/lights name="SL_CMDR_1" consumption=10 place_id=15
-http POST $backend_path/lights name="SL_CMDR_2" consumption=10 place_id=15
-http POST $backend_path/lights name="SL_CMDR_3" consumption=10 place_id=15
-http POST $backend_path/lights name="CCN_1" consumption=10 place_id=16
-http POST $backend_path/lights name="CCN_2" consumption=10 place_id=16
-http POST $backend_path/lights name="ZN_D_RP_1" consumption=10 place_id=17
-http POST $backend_path/lights name="BÑ_1" consumption=10 place_id=18
+#curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Ximena Perez", "email":"xperez@gmail.com", "password":"password"}}' http://$backend_path/users
+#http POST $backend_path/places name="Habitación principal" user_id=3
+#http POST $backend_path/places name="Habitación secundaria" user_id=3
+#http POST $backend_path/places name="Habitación huesped" user_id=3
+#http POST $backend_path/places name="Sala-Comedor" user_id=3
+#http POST $backend_path/places name="Cocina" user_id=3
+#http POST $backend_path/places name="Zona de ropa" user_id=3
+#http POST $backend_path/places name="Baño" user_id=3
+#http POST $backend_path/lights name="HBTCN_PRNCPL_1" consumption=0 place_id=12
+#http POST $backend_path/lights name="HBTCN_PRNCPL_2" consumption=0 place_id=12
+#http POST $backend_path/lights name="HBTCN_SCNDR_1" consumption=0 place_id=13
+#http POST $backend_path/lights name="HBTCN_SCNDR_2" consumption=0 place_id=13
+#http POST $backend_path/lights name="HBTCN_HSPD_1" consumption=0 place_id=14
+#http POST $backend_path/lights name="SL_CMDR_1" consumption=0 place_id=15
+#http POST $backend_path/lights name="SL_CMDR_2" consumption=0 place_id=15
+#http POST $backend_path/lights name="SL_CMDR_3" consumption=0 place_id=15
+#http POST $backend_path/lights name="CCN_1" consumption=0 place_id=16
+#http POST $backend_path/lights name="CCN_2" consumption=0 place_id=16
+#http POST $backend_path/lights name="ZN_D_RP_1" consumption=0 place_id=17
+#http POST $backend_path/lights name="BÑ_1" consumption=0 place_id=18
