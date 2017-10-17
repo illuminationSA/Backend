@@ -1,7 +1,5 @@
 #!/bin/bash
-
 db_file="$(pwd)/config/database.yml" # Database file path
-
 if [ $# -eq 0 ]; then # Check arguments existence
   echo "No arguments supplied"; exit 1
 elif [ $1 = "-l" ]; then # Run on localhost

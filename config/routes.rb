@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :light_logs
-
+  resources :ldap
   resources :users
   resources :places
   resources :lights
+  resources :light_logs
 
   scope :format => true, :constraints => { :format => 'json' } do
     post   "/login"       => "sessions#create"
