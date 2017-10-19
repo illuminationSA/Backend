@@ -1,16 +1,5 @@
 #!/bin/bash
-
-# Create user 
-#curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Lina Palacios", "email":"lpalacios@gmail.com", "password":"Hello1234"}}' http://$backend_path/users
-
-# Login user
-#curl -X POST --data "email=lpalacios@gmail.com&password=Hello1234" http://$backend_path/login.json
-
-# Logout user
-#curl -X DELETE -H "Authorization: Token token=9iVY71ofurt7N7jYHkGu1X79" http://$backend_path/logout.json
-
 backend_path="" # Backend web path
-
 if [ $# -eq 0 ]; then # Check arguments existence
   echo "No arguments supplied"; exit 1
 elif [ $1 = "-l" ]; then # Post on localhost
@@ -22,10 +11,8 @@ elif [ $1 = "-d" ]; then # Post on docker
 else # Check different argument
   echo "Argument not allowed"; exit 1
 fi
-
 # Carlos Domingo - Apartment with one room
 curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Carlos Domingo", "email":"cdomingo@gmail.com", "password":"Hello1234"}}' http://$backend_path/users
-
 http POST $backend_path/places name="Dormitorio" user_id=1
 http POST $backend_path/places name="Sala-Comedor" user_id=1
 http POST $backend_path/places name="Cocina" user_id=1
@@ -40,7 +27,6 @@ http POST $backend_path/lights name="CCN_1" consumption=0 place_id=3
 http POST $backend_path/lights name="CCN_2" consumption=0 place_id=3
 http POST $backend_path/lights name="ZN_D_LVD_1" consumption=0 place_id=4
 http POST $backend_path/lights name="BÑ_1" consumption=0 place_id=5
-
 http POST $backend_path/light_logs event="off" light_id=1
 http POST $backend_path/light_logs event="off" light_id=1
 http POST $backend_path/light_logs event="off" light_id=1
@@ -92,3 +78,12 @@ http POST $backend_path/light_logs event="off" light_id=1
 #http POST $backend_path/lights name="CCN_2" consumption=0 place_id=16
 #http POST $backend_path/lights name="ZN_D_RP_1" consumption=0 place_id=17
 #http POST $backend_path/lights name="BÑ_1" consumption=0 place_id=18
+
+# Create user 
+#curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Lina Palacios", "email":"lpalacios@gmail.com", "password":"Hello1234"}}' http://$backend_path/users
+
+# Login user
+#curl -X POST --data "email=lpalacios@gmail.com&password=Hello1234" http://$backend_path/login.json
+
+# Logout user
+#curl -X DELETE -H "Authorization: Token token=9iVY71ofurt7N7jYHkGu1X79" http://$backend_path/logout.json
