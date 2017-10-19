@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20171002055130) do
   create_table "lights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.float "consumption", limit: 24, default: 0.0
+    t.boolean "status", default: false
     t.bigint "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
