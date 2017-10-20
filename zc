@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script for removing all unused docker images
+
 docker-machine start rancher-server # Start docker machines
 docker-machine start rancher-node1
 
