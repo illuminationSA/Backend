@@ -11,10 +11,10 @@ backend_path="" # Backend web path
 if [ $# -eq 0 ]; then # Check arguments existence
   echo "No arguments supplied"; exit 1
 elif [ $1 = "-l" ]; then # Post on localhost
-  echo "Localhost option selected"; sleep 0.5
+  echo "Localhost option selected"; sleep 0.3
   backend_path="localhost:3000"
 elif [ $1 = "-d" ]; then # Post on docker
-  echo "Docker option selected"; sleep 0.5
+  echo "Docker option selected"; sleep 0.3
   backend_path="192.168.99.101:3000"
 else # Check different argument
   echo "Argument not allowed"; exit 1
@@ -22,7 +22,6 @@ fi
 
 # Carlos Domingo - Apartment with one room
 curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Carlos Domingo", "email":"cdomingo@unal.edu.co", "password":"Hello1234"}}' http://$backend_path/users
-
 http POST $backend_path/places name="Dormitorio" user_id=1
 http POST $backend_path/places name="Sala-Comedor" user_id=1
 http POST $backend_path/places name="Cocina" user_id=1

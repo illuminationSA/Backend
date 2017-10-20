@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script for removing all unused docker images
+
 eval $(docker-machine env rancher-node1) # Remove unused docker containers
 docker-machine ls
 docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi
