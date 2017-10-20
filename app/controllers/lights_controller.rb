@@ -55,6 +55,6 @@ class LightsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def light_params
-      params.require(:light).permit(:name, :consumption)
+      params.require(:light).permit(:name, :consumption, :status)
     end
 end
