@@ -1,5 +1,5 @@
 #!/bin/bash
-# Database creation script for iLlumination's backend
+# Database creation script
 
 db_file="$(pwd)/config/database.yml" # Database file path
 

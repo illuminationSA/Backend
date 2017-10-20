@@ -1,5 +1,5 @@
 #!/bin/bash
-# Database initialization script for iLlumination's backend
+# Database initialization script
 
 # Post notes: create, login and logout of a user
 #curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Lina Palacios", "email":"lpalacios@unal.edu.co", "password":"123456"}}' http://localhost:3000/users
