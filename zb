@@ -7,17 +7,15 @@ if [ $# -eq 0 ]; then # Check arguments existence
   echo "No arguments supplied"; exit 1
 elif [ $1 = "-l" ]; then # Run on localhost
   echo "Localhost option selected"; sleep 0.5
-  sed -i -e 's/db/localhost/g' $db_file
+  sed -i -e 's/illuminationbackenddb/localhost/g' $db_file
   rails db:drop && rails db:create && rails db:migrate && rails s
 elif [ $1 = "-d" ]; then # Run on docker
   echo "Docker option selected"; sleep 0.3
-  sed -i -e 's/localhost/db/g' $db_file
+  sed -i -e 's/localhost/illuminationbackenddb/g' $db_file
 
   docker-machine start rancher-server # Start docker machines
   docker-machine start rancher-node1
-
   eval $(docker-machine env rancher-node1) # Select node1 and start backend
-  docker-machine ls
 
   docker-compose build # Mount to rancher-node1
   docker-compose run --rm web rails db:drop
