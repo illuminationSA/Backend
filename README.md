@@ -35,7 +35,7 @@ httpie v0.9.2
 ### Configuration
 ```
 Install all dependencies:       $ bundle install
-Clear rancher-node1:            $ sh zclear
+Clear rancher-node1:            $ sh zc
 ```
 
 ### Database creation
