@@ -18,9 +18,9 @@ elif [ $1 = "-d" ]; then # Run on docker
   eval $(docker-machine env rancher-node1) # Select node1 and start backend
 
   docker-compose build # Mount to rancher-node1
-  docker-compose run --rm web rails db:drop
-  docker-compose run --rm web rails db:create
-  docker-compose run --rm web rails db:migrate
+  docker-compose run --rm illuminationbackendweb rails db:drop
+  docker-compose run --rm illuminationbackendweb rails db:create
+  docker-compose run --rm illuminationbackendweb rails db:migrate
   docker-compose up
 else # Check different argument
   echo "Argument not allowed"; exit 1
