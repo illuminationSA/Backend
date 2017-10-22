@@ -1,27 +1,35 @@
 #!/bin/bash
-# Database creation script
+# Backend configuration script
 
 db_file="$(pwd)/config/database.yml" # Database file path
-
-if [ $# -eq 0 ]; then # Check arguments existence
-  echo "No arguments supplied"; exit 1
-elif [ $1 = "-l" ]; then # Run on localhost
-  echo "Localhost option selected"; sleep 0.5
+if [ $# -eq 0 ]; then # Check options existence
+  echo "No arguments supplied"
+elif [ $# -gt 2 ]; then # Check options number
+  echo "The number of arguments is greater than 2"
+elif [ $1 = "-l" ] && ([ -z "$2" ] || [ $2 = "-r" ]); then # Run on localhost
+  echo "Localhost option selected"
   sed -i -e 's/illuminationbackenddb/localhost/g' $db_file
-  rails db:drop && rails db:create && rails db:migrate && rails s
-elif [ $1 = "-d" ]; then # Run on docker
-  echo "Docker option selected"; sleep 0.3
+  if [ -z "$2" ]; then
+    continue
+  elif [ $2 = "-r" ]; then
+    rails db:drop
+  fi
+  rails db:create && rails db:migrate && rails s
+elif [ $1 = "-d" ] && ([ -z "$2" ] || [ $2 = "-r" ]); then # Run on docker
+  echo "Docker option selected"
   sed -i -e 's/localhost/illuminationbackenddb/g' $db_file
-
-  docker-machine start rancher-server # Start docker machines
+  docker-machine start rancher-server
   docker-machine start rancher-node1
-  eval $(docker-machine env rancher-node1) # Select node1 and start backend
-
-  docker-compose build # Mount to rancher-node1
-  docker-compose run --rm illuminationbackendweb rails db:drop
+  eval $(docker-machine env rancher-node1)
+  docker-compose build
+  if [ -z "$2" ]; then
+    continue
+  elif [ $2 = "-r" ]; then
+    docker-compose run --rm illuminationbackendweb rails db:drop
+  fi
   docker-compose run --rm illuminationbackendweb rails db:create
   docker-compose run --rm illuminationbackendweb rails db:migrate
   docker-compose up
-else # Check different argument
-  echo "Argument not allowed"; exit 1
+else # Error message
+  echo "ERROR: some option is not allowed"
 fi

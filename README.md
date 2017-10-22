@@ -41,7 +41,9 @@ Clear rancher-node1:            $ sh zc
 ### Database creation
 ```
 For http://localhost:3000       $ sh zb -l
+For http://localhost:3000       $ sh zb -l -r (drop database)
 For http://192.168.99.101:3000  $ sh zb -d
+For http://192.168.99.101:3000  $ sh zb -d -r (drop database)
 ```
 
 ### Database initialization

@@ -7,16 +7,17 @@
 #curl -X DELETE -H "Authorization: Token token=9iVY71ofurt7N7jYHkGu1X79" http://localhost:3000/logout.json
 
 backend_path="" # Backend web path
-
-if [ $# -eq 0 ]; then # Check arguments existence
+if [ $# -eq 0 ]; then # Check options existence
   echo "No arguments supplied"; exit 1
+elif [ $# -gt 1 ]; then # Check options number
+  echo "The number of option is greater than 1"
 elif [ $1 = "-l" ]; then # Post on localhost
-  echo "Localhost option selected"; sleep 0.3
+  echo "Localhost option selected"
   backend_path="localhost:3000"
 elif [ $1 = "-d" ]; then # Post on docker
-  echo "Docker option selected"; sleep 0.3
+  echo "Docker option selected"
   backend_path="192.168.99.101:3000"
-else # Check different argument
+else # Error message
   echo "Argument not allowed"; exit 1
 fi
 
