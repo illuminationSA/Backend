@@ -1,0 +1,35 @@
+#!/bin/bash
+# Backend configuration script
+
+db_file="$(pwd)/config/database.yml" # Database file path
+if [ $# -eq 0 ]; then # Check options existence
+  echo "No arguments supplied"
+elif [ $# -gt 2 ]; then # Check options number
+  echo "The number of arguments is greater than 2"
+elif [ $1 = "-l" ] && ([ -z "$2" ] || [ $2 = "-r" ]); then # Run on localhost
+  echo "Localhost option selected"
+  sed -i -e 's/illuminationbackenddb/localhost/g' $db_file
+  if [ -z "$2" ]; then
+    continue
+  elif [ $2 = "-r" ]; then
+    rails db:drop
+  fi
+  rails db:create && rails db:migrate && rails s
+elif [ $1 = "-d" ] && ([ -z "$2" ] || [ $2 = "-r" ]); then # Run on docker
+  echo "Docker option selected"
+  sed -i -e 's/localhost/illuminationbackenddb/g' $db_file
+  docker-machine start rancher-server
+  docker-machine start rancher-node1
+  eval $(docker-machine env rancher-node1)
+  docker-compose build
+  if [ -z "$2" ]; then
+    continue
+  elif [ $2 = "-r" ]; then
+    docker-compose run --rm illuminationbackendweb rails db:drop
+  fi
+  docker-compose run --rm illuminationbackendweb rails db:create
+  docker-compose run --rm illuminationbackendweb rails db:migrate
+  docker-compose up
+else # Error message
+  echo "ERROR: some option is not allowed"
+fi

@@ -1,7 +1,7 @@
 require 'net/ldap' #gem install net-ldap
 class SessionsController < ApiController
   skip_before_action :require_login, only: [:create], raise: false
-  
+
   def connect
     ldap = Net::LDAP.new(
       host: '192.168.99.101',
@@ -14,12 +14,12 @@ class SessionsController < ApiController
     )
     return ldap.bind
   end
-  
+
   def create
     email = params[:email]
     password = params[:password]
     email = email[/\A\w+/].downcase
-    
+
     if connect()
       ldap = Net::LDAP.new(
         host: '192.168.99.101',
@@ -30,7 +30,7 @@ class SessionsController < ApiController
           password: password
         }
       )
-      if ldap.bind 
+      if ldap.bind
         puts ldap.bind
         if user = User.valid_login?(params[:email], params[:password])
           allow_token_to_be_used_only_once_for(user)
@@ -45,7 +45,7 @@ class SessionsController < ApiController
       end
     end
   end
-  
+
   #def create
   #  if user = User.valid_login?(params[:email], params[:password])
   #    allow_token_to_be_used_only_once_for(user)

@@ -9,10 +9,11 @@ $ git clone https://github.com/illuminationSA/Backend.git
 $ cd Backend
 
 $ git flow init
+$ bundle install
 $ git flow feature start #-card-on-trello
-$ gst -sb
-$ ga .
-$ gc -m "SOMETHING YOU WANT TO COMMIT"
+$ git status
+$ git add .
+$ git commit -m "SOMETHING THAT YOU WANT TO COMMIT"
 $ git flow feature publish #-card-on-trello
 $ git flow feature finish #-card-on-trello
 $ git push
@@ -34,17 +35,19 @@ httpie v0.9.2
 ### Configuration
 ```
 Install all dependencies:       $ bundle install
-Clear rancher-node1:            $ sh zclear
+Clear rancher-node1:            $ sh zc
 ```
 
 ### Database creation
 ```
-For http://localhost:3000       $ sh z1 -l
-For http://192.168.99.101:3000  $ sh z1 -d
+For http://localhost:3000       $ sh zb -l
+For http://localhost:3000       $ sh zb -l -r (drop database)
+For http://192.168.99.101:3000  $ sh zb -d
+For http://192.168.99.101:3000  $ sh zb -d -r (drop database)
 ```
 
 ### Database initialization
 ```
-For http://localhost:3000       $ sh z2 -l
-For http://192.168.99.101:3000  $ sh z2 -d
+For http://localhost:3000       $ sh zp -l
+For http://192.168.99.101:3000  $ sh zp -d
 ```
