@@ -3,6 +3,5 @@
 
 docker-machine start rancher-server # Start docker machines
 docker-machine start rancher-node1
-
 eval $(docker-machine env rancher-node1) # Remove unused docker containers
 docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi
