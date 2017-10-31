@@ -75,6 +75,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    nori (2.6.0)
     puma (3.10.0)
     rack (2.0.3)
     rack-cors (1.0.1)
@@ -128,6 +129,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    wash_out (0.12.0)
+      nori (>= 2.0.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -151,6 +154,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   therubyracer
   tzinfo-data
+  wash_out
 
 BUNDLED WITH
-   1.16.0.pre.2
+   1.16.0.pre.3

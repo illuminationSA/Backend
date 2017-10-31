@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :places
   resources :lights
 
+  wash_out :wslight
+
   scope :format => true, :constraints => { :format => 'json' } do
     post   "/login"       => "sessions#create"
     delete "/logout"      => "sessions#destroy"
@@ -14,5 +16,5 @@ Rails.application.routes.draw do
   get 'users/:id/places', to: 'users#show_places', as: :users_show_places
   get 'places/:id/lights', to: 'places#show_lights', as: :places_show_lights
   get 'lights/:id/light_logs', to: 'lights#show_light_logs', as: :lights_show_light_logs
-  
+
 end

@@ -16,6 +16,14 @@ class User < ApplicationRecord
     end
   end
 
+  def self.by_id( user_id )
+    self.find_by( {id: user_id} )
+  end
+
+  def self.by_email( user_email )
+    self.find_by( {email: user_email} )
+  end
+
   def lights
     @lights = Array.new
     self.places.each do |pl|
