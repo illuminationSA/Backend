@@ -6,13 +6,16 @@ class WslightController < ApplicationController
               :return => :float
 
   def consumption
-    user = User.by_email(:email)
+    puts params[:email]
+    user = User.by_email(params[:email])
     consumption = 0.0
     user.lights.each do |lt|
       consumption = consumption + lt.consumption
+      #puts "lt.consumption = ", lt.consumption
     end
-
+    puts consumption
     render :soap => consumption
+
   end
 
   # check case
