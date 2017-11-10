@@ -6,14 +6,13 @@ class WslightController < ApplicationController
               :return => :float
 
   def consumption
+    @user = User.by_email(params[:email])
     consumption = -1.0
-    if check
+    puts @user
+    if @user
       consumption = @user.total_consumption
     end
-
-    puts consumption
-    render :soap => { :consumption => consumption, :check => check  }
-
+    render :soap => consumption
   end
 
   # check case
@@ -23,7 +22,7 @@ class WslightController < ApplicationController
   def check
     @user = User.by_email(params[:email])
     validate = true
-    if !(user)
+    if !(@user)
       validate = false
     end
     render :soap => validate
