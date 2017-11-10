@@ -103,24 +103,14 @@ class LightsController < ApplicationController
     times_keys.each do |tk|
       teim = tk
 
-      # teim = Time.now.strftime("%H%M%S").to_i
-      # teim = "000500".to_i
       hora = teim / 10000
       minutos = (teim / 100) - hora * 100
       segundos = teim - hora * 10000 - minutos * 100
 
-      puts hora.to_s + ":" + minutos.to_s + ":" + segundos.to_s
+      # puts hora.to_s + ":" + minutos.to_s + ":" + segundos.to_s
       dece = (minutos / 10).to_i
       uni = (minutos - dece * 10).to_i
-      puts "dec: " + dece.to_s + " uni: "+ uni.to_s
-      # puts (uni >= 5 && uni < 7) || (uni = 7 && segundos < 30)
-      # puts "3 " + (uni = 7 && segundos < 30).to_s
-      # puts uni
-
-      # puts (uni < 2 || uni == 2 && segundos < 30)
-      # puts ( ( uni < 5 && uni > 2 ) || (uni == 2 && segundos >= 30 ) )
-      # puts ( ( uni >= 5 && uni < 7 ) || (uni == 7 && segundos < 30 ) )
-      # puts ( uni > 7 || uni == 7 && segundos >= 30 )
+      # puts "dec: " + dece.to_s + " uni: "+ uni.to_s
 
       if (uni < 2 || uni == 2 && segundos < 30)
         segundos = 0
@@ -193,7 +183,7 @@ class LightsController < ApplicationController
       if id_off - id_on > 1
         each_consumption = i_consumption / (id_off - id_on)
         (0...(id_off - id_on)).each do |i|
-          puts "Consumption here " + i.to_s + " " + (current_consumption+each_consumption*i).to_s
+          # puts "Consumption here " + i.to_s + " " + (current_consumption+each_consumption*i).to_s
           #Se agrega cada porción de consumo en current_consumption
           g_data[ id_on + i ] = current_consumption + each_consumption * i
         end
@@ -224,9 +214,20 @@ class LightsController < ApplicationController
     #   # puts g_data[j].to_s
     #   puts "[" + j.to_s + "]" + " = " + g_data[j].to_s
     # end
-    puts "lenght gdata: " + g_data.length.to_s
+    # puts "lenght gdata: " + g_data.length.to_s
     # render json: ev_times
-    render json: g_data
+
+    final = []
+    (0...g_data.length).each do |j|
+      final.push( { 'data' => g_data[j],
+        'caption' => ''}  )
+    end
+
+    (0...24).each do |cap|
+      final[ 12 * cap ] = { 'data' => g_data[ 12 * cap ],
+        'caption' => cap.to_s}
+    end
+    render json: final
 
   end #
 
