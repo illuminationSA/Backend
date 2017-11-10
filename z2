@@ -41,16 +41,16 @@ http POST $backend_path/lights name="CCN_2" consumption=0 place_id=3
 http POST $backend_path/lights name="ZN_D_LVD_1" consumption=0 place_id=4
 http POST $backend_path/lights name="BÑ_1" consumption=0 place_id=5
 
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
-http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
+#http POST $backend_path/light_logs event="off" light_id=1
 
 # Ernesto Arango - Apartment with two rooms
 #curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Ernesto Arango", "email":"earango@gmail.com", "password":"123123"}}' http://$backend_path/users

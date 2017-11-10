@@ -52,9 +52,15 @@ class LightsController < ApplicationController
     # Declarations
     watts = 20 # Watts for a Saving Light Bulb = 20 w, Incandescent bulb = 100 w
     consumption = 0.0
-    duration = 0.0
+    # duration = 0.0
     today = Date.today
 	  @logs_list = @light.light_logs
+
+    # creación arreglo y llenado de 0's
+    g_data = []
+    (0..287).each do |i|
+      g_data.push(0)
+    end
 
     # escojer logs hasta hora actual
     # today_logs = @logs_list.where( ["created_at >= ? AND created_at <= ?", today.beginning_of_day, Time.now] )
@@ -64,14 +70,17 @@ class LightsController < ApplicationController
     ev_times = {}
     com = {}
 
+    #agregar llaves con el formato HHMMSS y valor [ evento(encendido o apagado), hora del evento ]
     today_logs.each do |single|
       ev_times[single.created_at.strftime("%H%M%S").to_i] = [single.event, single.created_at]
     end
 
     # Hash[ev_times.sort]
-
+    #times keys = arreglo con las llaves del hash ev_times
     times_keys = ev_times.keys
+    #se ordena times keys para tener las horas de forma ascendente
     times_keys.sort
+
 
     puts "size: " + times_keys.size.to_s
     #puts ev_times[ times_keys[times_keys.size - 1] ][0]
@@ -79,16 +88,18 @@ class LightsController < ApplicationController
     puts "bg d: " + today.beginning_of_day.to_s
 
     count = 0
-
+    # se agrega un evento on a las 0000000 si el primer evento es un off
+    # también un off en el momento de la consulta para realizar el cálculo hasta ese momento si la luz se encuentra encendida (el último registro es un ON)
     if times_keys.length > 0
       if ev_times[ times_keys[0] ][0] == false
         ev_times[ 0 ] = [ true, today.beginning_of_day ]
       end
       if ev_times[ times_keys[times_keys.size - 1] ][0] == true
-        ev_times[ Time.now.strftime("%H%M%S").to_i ] = [ true, today.beginning_of_day ]
+        ev_times[ Time.now.strftime("%H%M%S").to_i ] = [ true, Time.now ]
       end
     end
 
+    #por cada llave se calcula su posición en el arreglo de datos
     times_keys.each do |tk|
       teim = tk
 
@@ -139,57 +150,84 @@ class LightsController < ApplicationController
 
       com[tk] = [hora.to_s + dece.to_s + uni.to_s + (segundos/10).to_i.to_s + (segundos - (segundos/10).to_i * 10).to_i.to_s, the_id]
 
-
-      # time -> beggining
-
-      # teim1 = today.beginning_of_day
-
-      # position x hour
-
-      # (1..24).each do
-      #   (1..12).each do
-      #     puts "[" + count.to_s + "] = " +  teim1.to_s
-      #     teim1 = teim1 + 5*60
-      #     count += 1
-      #   end
-      # end
     end
 
-    render json: ev_times
+    # teim1 = today.beginning_of_day
 
-	  # if @logs_list.length > 1  # Size of log list > 1
-    #   u_log = @logs_list[-1] # Ultimate log
-	  # 	p_log = @logs_list[-2] # Penultimate log
-	  # 	u_date = @logs_list[-1].created_at.localtime # Date of ultimate log
-	  # 	p_date = @logs_list[-2].created_at.localtime # Date of penultimate log
-    #   puts 'p_date = ', p_date
-    #   puts 'u_date = ', u_date
-	  # 	if u_date.to_date == p_date.to_date  # The day didn't change
-    #     puts 'The day didnt change'
-    #     consumption = @light.consumption
-    #     if u_log.event == false # If ultimate log is false, calculate consumption
-    #       duration = (u_date - p_date) / 3600
-    #       consumption = consumption + (watts * duration)
-    #       @light.update_attribute(:consumption, consumption)
-    #     end
-    #   else # The day changed
-    #     puts 'The day changed'
-    #     if u_log.event == false # If ultimate log is false, calculate consumption
-    #       b_date = u_date.beginning_of_day.localtime
-    #       puts 'b_date = ', b_date
-    #       puts 'u_date = ', u_date
-    #       duration = (u_date - b_date) / 3600
-    #       consumption = (watts * duration)
-    #       @light.update_attribute(:consumption, consumption)
-    #     else # If ultimate log is true, restart consumption
-    #       consumption = 0.0
-    #     end
+    # position x hour
+
+    # (1..24).each do
+    #   (1..12).each do
+    #     puts "[" + count.to_s + "] = " +  teim1.to_s
+    #     teim1 = teim1 + 5*60
+    #     count += 1
     #   end
-    #   puts 'duration = ', duration
-    #   puts 'consumption = ', consumption
-    # else
-    #   puts 'One light registered'
     # end
+
+    #se calcula el consumo en cada punto de la gráfica / Cada 5 minutos
+    current_consumption = 0
+    c_on_id = 0
+    c_off_id = 1
+    last_id = 0
+
+    (0..(com.length/2)-1).each do |p_on|
+      # id's de cada hora en el arreglo de puntos de la gráfica
+      id_on = com[times_keys[c_on_id]][1]
+      id_off = com[times_keys[c_off_id]][1]
+      # hora de tipo Time en la que sucedió el evento
+      h_on = ev_times[times_keys[c_on_id]][1]
+      h_off = ev_times[times_keys[c_off_id]][1]
+
+      #puts h_on.to_s + " "+ h_off.to_s
+      # Tiempo de consumo
+      t_on = h_off - h_on
+      # Consumo en watts
+      i_consumption = t_on/3600 * watts
+
+      #rellenar de consumo actual los campos desde el último apagado
+      (last_id...id_on).each do |fill|
+        g_data[ fill ] = current_consumption
+      end
+
+      #agregar los puntos desde el encendido hasta el apagado dependiendo del tiempo total de encendido
+      if id_off - id_on > 1
+        each_consumption = i_consumption / (id_off - id_on)
+        (0...(id_off - id_on)).each do |i|
+          puts "Consumption here " + i.to_s + " " + (current_consumption+each_consumption*i).to_s
+          #Se agrega cada porción de consumo en current_consumption
+          g_data[ id_on + i ] = current_consumption + each_consumption * i
+        end
+      else
+        #se agrega el consumo en el tiempo calculado al current_consumption
+        g_data[ id_off ] = current_consumption + i_consumption
+      end
+
+      # aumentar consumo
+      current_consumption += i_consumption
+
+      # puts "Consumo: " + current_consumption.to_s
+
+      # aumentar contadores
+      last_id = id_off
+      c_on_id += 2
+      c_off_id += 2
+    end
+
+    if last_id < 287
+      (last_id...288).each do |fill|
+        #llenar los puntos restantes con current_consumption
+        g_data[ fill ] = current_consumption
+      end
+    end
+
+    # (0...g_data.length).each do |j|
+    #   # puts g_data[j].to_s
+    #   puts "[" + j.to_s + "]" + " = " + g_data[j].to_s
+    # end
+    puts "lenght gdata: " + g_data.length.to_s
+    # render json: ev_times
+    render json: g_data
+
   end #
 
   private
