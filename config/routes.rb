@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   get 'places/:id/lights', to: 'places#show_lights', as: :places_show_lights
   get 'lights/:id/light_logs', to: 'lights#show_light_logs', as: :lights_show_light_logs
   get 'users/:id/total_consumption', to: 'users#show_total_consumption', as: :users_show_total_consumption
+  get 'lights/:id/data', to: 'lights#graph_data', as: :light_graph_data
 
 end
