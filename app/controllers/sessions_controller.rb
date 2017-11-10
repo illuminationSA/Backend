@@ -4,7 +4,7 @@ class SessionsController < ApiController
 
   def connect
     ldap = Net::LDAP.new(
-      host: '192.168.0.9',
+      host: 'http://192.168.99.101',
       port: 389,
       auth: {
              method: :simple,
@@ -15,45 +15,45 @@ class SessionsController < ApiController
     return ldap.bind
   end
 
-  def create
-    email = params[:email]
-    password = params[:password]
-    email = email[/\A\w+/].downcase
-
-    if connect()
-      ldap = Net::LDAP.new(
-        host: '192.168.0.9',
-        port: 389,
-        auth: {
-          method: :simple,
-          dn: 'cn=' + email + '@unal.edu.co,ou=iLlumination,dc=arqsoft,dc=unal,dc=edu,dc=co',
-          password: password
-        }
-      )
-      if ldap.bind
-        puts ldap.bind
-        if user = User.valid_login?(params[:email], params[:password])
-          allow_token_to_be_used_only_once_for(user)
-          send_auth_token_for_valid_login_of(user)
-          puts 'LDAP validation success'
-        else
-          puts 'LDAP validation success. User not created in Backend'
-        end
-      else
-        puts 'LDAP validation failed'
-        render_unauthorized("Error with your login or password")
-      end
-    end
-  end
-
   #def create
-  #  if user = User.valid_login?(params[:email], params[:password])
-  #    allow_token_to_be_used_only_once_for(user)
-  #    send_auth_token_for_valid_login_of(user)
-  #  else
-  #    render_unauthorized("Error with your login or password")
+  #  email = params[:email]
+  #  password = params[:password]
+  #  email = email[/\A\w+/].downcase
+
+  #  if connect
+  #    ldap = Net::LDAP.new(
+  #      host: 'http://192.168.99.101',
+  #      port: 389,
+  #      auth: {
+  #        method: :simple,
+  #        dn: 'cn=' + email + '@unal.edu.co,ou=iLlumination,dc=arqsoft,dc=unal,dc=edu,dc=co',
+  #        password: password
+  #      }
+  #    )
+  #    if ldap.bind
+  #      puts ldap.bind
+  #      if user = User.valid_login?(params[:email], params[:password])
+  #        allow_token_to_be_used_only_once_for(user)
+  #        send_auth_token_for_valid_login_of(user)
+  #        puts 'LDAP validation success'
+  #      else
+  #        puts 'LDAP validation success. User not created in Backend'
+  #      end
+  #    else
+  #      puts 'LDAP validation failed'
+  #      render_unauthorized("Error with your login or password")
+  #    end
   #  end
   #end
+
+  def create
+    if user = User.valid_login?(params[:email], params[:password])
+      allow_token_to_be_used_only_once_for(user)
+      send_auth_token_for_valid_login_of(user)
+    else
+      render_unauthorized("Error with your login or password")
+    end
+  end
 
   def destroy
     logout
