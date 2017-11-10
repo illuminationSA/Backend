@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy, :show_lights, :show_places]
+  before_action :set_user, only: [:show, :update, :destroy, :show_lights, :show_places, :show_total_consumption]
 
   # GET /users
   def index
@@ -46,6 +46,11 @@ class UsersController < ApplicationController
     else
       render json: "Error en users/user_id/lights"
     end
+  end
+
+  # GET /users/1/total_consumption
+  def show_total_consumption
+    render json: @user.total_consumption
   end
 
   # GET /users/1/places
