@@ -142,18 +142,6 @@ class LightsController < ApplicationController
 
     end
 
-    # teim1 = today.beginning_of_day
-
-    # position x hour
-
-    # (1..24).each do
-    #   (1..12).each do
-    #     puts "[" + count.to_s + "] = " +  teim1.to_s
-    #     teim1 = teim1 + 5*60
-    #     count += 1
-    #   end
-    # end
-
     #se calcula el consumo en cada punto de la gráfica / Cada 5 minutos
     current_consumption = 0
     c_on_id = 0
@@ -217,16 +205,29 @@ class LightsController < ApplicationController
     # puts "lenght gdata: " + g_data.length.to_s
     # render json: ev_times
 
+    teim1 = today.beginning_of_day
+
+    # position x hour
+
+    # (1..24).each do
+    #   (1..12).each do
+    #     puts "[" + count.to_s + "] = " +  teim1.to_s
+    #     teim1 = teim1 + 5*60
+    #     count += 1
+    #   end
+    # end
+
     final = []
     (0...g_data.length).each do |j|
       final.push( { 'data' => g_data[j],
-        'caption' => ''}  )
+        'caption' => teim1.strftime("%H:%M:%S") }  )
+      teim1 = teim1 + 5*60
     end
 
-    (0...24).each do |cap|
-      final[ 12 * cap ] = { 'data' => g_data[ 12 * cap ],
-        'caption' => cap.to_s}
-    end
+    # (0...24).each do |cap|
+    #   final[ 12 * cap ] = { 'data' => g_data[ 12 * cap ],
+    #     'caption' => cap.to_s}
+    # end
     render json: final
 
   end #
