@@ -26,4 +26,12 @@ class User < ApplicationRecord
     Light.by_ids( @lights )
   end
 
+  def total_consumption
+    @total = 0.0
+    self.lights.each do |l|
+      @total = @total + l.consumption
+    end
+    return @total
+  end
+
 end
