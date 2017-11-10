@@ -63,9 +63,9 @@ class LightsController < ApplicationController
     end
 
     # escojer logs hasta hora actual
-    # today_logs = @logs_list.where( ["created_at >= ? AND created_at <= ?", today.beginning_of_day, Time.now] )
+    today_logs = @logs_list.where( ["created_at >= ? AND created_at <= ?", today.beginning_of_day, Time.now] )
     # para mostrar todos los logs del día
-    today_logs = @logs_list.where( ["created_at >= ? AND created_at <= ?", today.beginning_of_day, today.end_of_day  ] )
+    # today_logs = @logs_list.where( ["created_at >= ? AND created_at <= ?", today.beginning_of_day, today.end_of_day  ] )
 
     ev_times = {}
     com = {}
