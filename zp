@@ -22,8 +22,8 @@ else # Error message
 fi
 
 # Carlos Domingo - Apartment with one room
-curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Carlos Domingo", "email":"cdomingo@unal.edu.co", "password":"Hello1234"}}' http://$backend_path/users
-http POST $backend_path/places name="Dormitorio" user_id=1
+curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Carlos Domingo", "email":"cdomingo@unal.edu.co", "password":"123123123"}}' http://10.203.139.159:3000/users
+http POST http://10.203.139.159:3000/places name="Dormitorio" user_id=1
 http POST $backend_path/places name="Sala-Comedor" user_id=1
 http POST $backend_path/places name="Cocina" user_id=1
 http POST $backend_path/places name="Zona de lavado" user_id=1

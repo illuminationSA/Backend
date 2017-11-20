@@ -1,0 +1,4 @@
+illuminationbackenddb:
+  scale: 2
+illuminationbackendweb:
+  scale: 2
