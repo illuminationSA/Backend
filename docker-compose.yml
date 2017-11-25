@@ -11,8 +11,9 @@ services:
       MYSQL_DATABASE: illuminationSA_Backend_development
       MYSQL_HOST: illuminationbackenddb
   illuminationbackendweb:
-    # build: .
-    image: fmbernalb/illuminationback
+    #build: .
+    #image: fmbernalb/illuminationback
+    image: afforeroc/backendcopy
     command: bash -c "sleep 120 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
     ports:
       - "3000:3000"
